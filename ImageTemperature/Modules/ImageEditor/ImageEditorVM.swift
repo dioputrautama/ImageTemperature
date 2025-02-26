@@ -12,6 +12,7 @@ import SwiftUI
 class ImageEditorVM: ObservableObject {
     @Published var imageItem: PhotosPickerItem?
     @Published var imagePick: UIImage?
+    @Published var originalImage: UIImage?
     @Published var temperatureValue: Int32 = 0
 
     func loadImage() {
@@ -20,6 +21,7 @@ class ImageEditorVM: ObservableObject {
             if let data = try? await imageItem.loadTransferable(type: Data.self),
                let uiImage = UIImage(data: data) {
                 DispatchQueue.main.async {
+                    self.originalImage = uiImage
                     self.imagePick = uiImage
                 }
             } else {
@@ -29,13 +31,9 @@ class ImageEditorVM: ObservableObject {
     }
 
     func adjustTemperature() {
-        guard let image = imagePick else { return }
-        Task {
-            let adjustedImage = OpenCVWrapper.adjustTemperature(image, temperature: temperatureValue)
-            DispatchQueue.main.async {
-                self.imagePick = adjustedImage
-            }
-        }
+        guard let originalImage = originalImage else { return }
+        let adjustedImage = OpenCVWrapper.adjustTemperature(originalImage, temperature: temperatureValue)
+        self.imagePick = adjustedImage
     }
 
     func resetImage() {
@@ -46,6 +44,7 @@ class ImageEditorVM: ObservableObject {
     func clearImage() {
         imageItem = nil
         imagePick = nil
+        originalImage = nil
         temperatureValue = 0
     }
 }

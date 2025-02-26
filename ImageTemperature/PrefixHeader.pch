@@ -1,0 +1,15 @@
+//
+//  PrefixHeader.pch
+//  ImageTemperature
+//
+//  Created by Dio Putra Utama on 26/02/25.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+#ifdef __cplusplus
+#import <opencv2/opencv.hpp>
+#endif
+
+#endif

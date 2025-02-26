@@ -62,7 +62,7 @@ struct ImageEditorView: View {
 
             VStack(alignment: .leading) {
                 HStack {
-                    Text("Temperature")
+                    Text((viewModel.temperatureValue > 0 ? "🔥" : (viewModel.temperatureValue < 0 ? "❄️" : "😍")) + " Temperature")
                         .font(.headline)
                         .foregroundColor(viewModel.temperatureValue > 0 ? .red : (viewModel.temperatureValue < 0 ? .blue : .gray))
                     Spacer()

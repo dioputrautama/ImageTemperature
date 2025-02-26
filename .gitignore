@@ -1,0 +1,32 @@
+# MacOS system files
+.DS_Store
+
+# Xcode
+build/
+DerivedData/
+*.xcworkspace
+xcuserdata/
+
+# Swift Package Manager
+/.swiftpm/
+/Packages/
+/Package.pins
+
+# CocoaPods
+Pods/
+Podfile.lock
+
+# Carthage
+/Carthage/Checkouts
+/Carthage/Build
+
+# Fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/
+fastlane/test_output/
+
+# Ignore temporary files
+*.swp
+*.swo
+*.tmp

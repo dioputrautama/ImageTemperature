@@ -38,14 +38,14 @@
     // BGR: Blue (0), Green (1), Red (2)
     if (temperature < 0) {
         // Warm transition: First yellow (increase R & G), then red
-        channels[2] += temperature; // Increase Red
-        channels[1] += temperature * 0.5; // Increase Green (Yellow effect)
-        channels[0] -= temperature * 0.3; // Reduce Blue slightly
+        channels[2] += abs(temperature);  // ✅ Increase Red (R)
+        channels[1] += abs(temperature) * 0.5; // ✅ Increase Green (Yellow effect)
+        channels[0] -= abs(temperature) * 0.3; // ✅ Reduce Blue
     } else {
         // Cool transition: First light blue (increase B & G), then deep blue
-        channels[0] += abs(temperature); // Increase Blue
-        channels[1] += abs(temperature) * 0.5; // Increase Green (Light blue effect)
-        channels[2] -= abs(temperature) * 0.3; // Reduce Red slightly
+        channels[0] += temperature; // ✅ Increase Blue (B)
+        channels[1] += temperature * 0.5; // ✅ Increase Green (Light blue effect)
+        channels[2] -= temperature * 0.3; // ✅ Reduce Red
     }
 
     cv::merge(channels, mat);

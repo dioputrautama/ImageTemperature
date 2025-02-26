@@ -36,7 +36,7 @@
     cv::split(mat, channels);
 
     // BGR: Blue (0), Green (1), Red (2)
-    if (temperature > 0) {
+    if (temperature < 0) {
         // Warm transition: First yellow (increase R & G), then red
         channels[2] += temperature; // Increase Red
         channels[1] += temperature * 0.5; // Increase Green (Yellow effect)

@@ -16,11 +16,9 @@
     // Konversi UIImage ke OpenCV Mat
     UIImageToMat(image, mat);
 
-    // Pisahkan channel warna (BGR)
     std::vector<cv::Mat> channels;
     cv::split(mat, channels);
 
-    // Penyesuaian suhu warna
     if (temperature > 0) {
         channels[2] += temperature; // Tambah merah (R)
         channels[0] -= temperature; // Kurangi biru (B)
@@ -29,10 +27,8 @@
         channels[0] += abs(temperature); // Tambah biru (B)
     }
 
-    // Gabungkan kembali channel warna
     cv::merge(channels, mat);
 
-    // Konversi kembali ke UIImage
     return MatToUIImage(mat);
 }
 

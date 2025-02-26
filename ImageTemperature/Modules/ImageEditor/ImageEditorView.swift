@@ -49,6 +49,11 @@ struct ImageEditorView: View {
                             .resizable()
                             .frame(width: 70, height: 60)
                         PhotosPicker("Select Image", selection: $viewModel.imageItem, matching: .images)
+
+                        if viewModel.errorJpegOnly {
+                            Text("‼️ Image must JPEG only ‼️")
+                                .foregroundStyle(.red)
+                        }
                     }
                 }
             }
